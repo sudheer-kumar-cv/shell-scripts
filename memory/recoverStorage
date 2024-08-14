@@ -1,0 +1,26 @@
+: '
+node_modules folder can table a lot of disk space if you have alot of node projects.
+This script can help to clear the memory by deleting the node_modules folder 
+from all the child folders.
+
+Usage:
+> cd code
+code> chmode +x deleteModeModules
+code> ./deleteModeModules
+'
+
+#!/bin/bash
+
+# The directory to start from
+startdir="$1"
+
+# Check if directory exists
+if [ ! -d "$startdir" ]; then
+    echo "Directory $startdir does not exist."
+    exit 1
+fi
+
+# Find and delete node_modules directories
+find "$startdir" -mindepth 2 -maxdepth 2 -type d -name 'node_modules' -exec rm -rf {} \;
+
+echo "Deleted node_modules directories under $startdir"
