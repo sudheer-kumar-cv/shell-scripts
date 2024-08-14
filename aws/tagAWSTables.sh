@@ -1,3 +1,13 @@
+: '
+THis script creates tag for each DDB table with name : TableName same as that of the name of the table.
+This tag can be used to create costAllocationTags which can be used to track the cost incurred by this table.
+By default, the CostExplorer propvides no way to categirize the cost and hence this is a better way.
+
+Usage:
+BashScripts> chmod +x tagAWSTablesForCostAllocationtags
+BashScripts> ./tagAWSTablesForCostAllocationtags
+'
+
 #!/bin/bash
 
 # Get the list of all DynamoDB tables
@@ -17,6 +27,7 @@ for table in $tables; do
     else
         echo "Table $table already has the tag: TableName=$current_tags"
     fi
+    break
 done
 
 echo "Tagging process completed."
